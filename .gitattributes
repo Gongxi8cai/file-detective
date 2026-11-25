@@ -1,0 +1,7 @@
+# 正常文本按 LF 存库；样例二进制文件保持原样，避免被换行转换破坏
+* text=auto
+*.png binary
+*.jpg binary
+*.zip binary
+*.docx binary
+*.pdf binary

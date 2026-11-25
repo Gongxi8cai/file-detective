@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="984" viewBox="0 0 1240 984" font-family="-apple-system, Segoe UI, Microsoft YaHei, sans-serif">
+<rect width="100%" height="100%" fill="#0d1117"/>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7a90"/></marker></defs>
+<text x="48" y="44" fill="#e6edf3" font-size="26" font-weight="700">file-detective · 调用链与知识路径</text>
+<text x="48" y="72" fill="#8b98a9" font-size="13">读前 16 字节 → 认出真实类型 → 说清怎么打开　｜　括号里的 ⑬⑩ 是《Java 知识地图》的功能域编号</text>
+<rect x="48" y="96" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="96" width="5" height="50" rx="2.5" fill="#9aa4b2"/>
+<circle cx="78" cy="121.0" r="13" fill="#0d1117" stroke="#9aa4b2" stroke-width="1.4"/>
+<text x="78" y="125.5" fill="#9aa4b2" font-size="12" font-weight="700" text-anchor="middle">1</text>
+<text x="102" y="117" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">public static void main(String[] args)</text>
+<text x="102" y="135" fill="#8b98a9" font-size="11.5">程序入口；类名必须等于文件名</text>
+<text x="736" y="125.5" fill="#9aa4b2" font-size="11.5" font-weight="600" text-anchor="end">⑯ ⑥</text>
+<rect x="48" y="162" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="162" width="5" height="50" rx="2.5" fill="#4a9eff"/>
+<circle cx="78" cy="187.0" r="13" fill="#0d1117" stroke="#4a9eff" stroke-width="1.4"/>
+<text x="78" y="191.5" fill="#4a9eff" font-size="12" font-weight="700" text-anchor="middle">2</text>
+<text x="102" y="183" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">Path p = Path.of(args[0]);</text>
+<text x="102" y="201" fill="#8b98a9" font-size="11.5">命令行参数 → 路径对象</text>
+<text x="736" y="191.5" fill="#4a9eff" font-size="11.5" font-weight="600" text-anchor="end">① ⑬</text>
+<rect x="48" y="228" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="228" width="5" height="50" rx="2.5" fill="#f0b429"/>
+<circle cx="78" cy="253.0" r="13" fill="#0d1117" stroke="#f0b429" stroke-width="1.4"/>
+<text x="78" y="257.5" fill="#f0b429" font-size="12" font-weight="700" text-anchor="middle">3</text>
+<text x="102" y="249" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">try (var in = Files.newInputStream(p))</text>
+<text x="102" y="267" fill="#8b98a9" font-size="11.5">try-with-resources：离开就自动关流</text>
+<text x="736" y="257.5" fill="#f0b429" font-size="11.5" font-weight="600" text-anchor="end">⑬ ⑩</text>
+<rect x="48" y="294" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="294" width="5" height="50" rx="2.5" fill="#f0b429"/>
+<circle cx="78" cy="319.0" r="13" fill="#0d1117" stroke="#f0b429" stroke-width="1.4"/>
+<text x="78" y="323.5" fill="#f0b429" font-size="12" font-weight="700" text-anchor="middle">4</text>
+<text x="102" y="315" fill="#e6edf3" font-size="11.4" font-family="Consolas, Menlo, monospace">byte[] kopf = new byte[16];  in.readNBytes(kopf,0,16);</text>
+<text x="102" y="333" fill="#8b98a9" font-size="11.5">只读前 16 字节，不把整个文件读进内存</text>
+<text x="736" y="323.5" fill="#f0b429" font-size="11.5" font-weight="600" text-anchor="end">⑬ ②</text>
+<rect x="48" y="360" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="360" width="5" height="50" rx="2.5" fill="#4a9eff"/>
+<circle cx="78" cy="385.0" r="13" fill="#0d1117" stroke="#4a9eff" stroke-width="1.4"/>
+<text x="78" y="389.5" fill="#4a9eff" font-size="12" font-weight="700" text-anchor="middle">5</text>
+<text x="102" y="381" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">int b = kopf[i] &amp; 0xFF;</text>
+<text x="102" y="399" fill="#8b98a9" font-size="11.5">byte 有符号 → 变成 0..255（本项目第一课）</text>
+<text x="736" y="389.5" fill="#4a9eff" font-size="11.5" font-weight="600" text-anchor="end">② ③</text>
+<rect x="48" y="426" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="426" width="5" height="50" rx="2.5" fill="#3ecf8e"/>
+<circle cx="78" cy="451.0" r="13" fill="#0d1117" stroke="#3ecf8e" stroke-width="1.4"/>
+<text x="78" y="455.5" fill="#3ecf8e" font-size="12" font-weight="700" text-anchor="middle">6</text>
+<text x="102" y="447" fill="#e6edf3" font-size="11.4" font-family="Consolas, Menlo, monospace">for (Format f : TABELLE) if (passt(kopf, f.magic)) …</text>
+<text x="102" y="465" fill="#8b98a9" font-size="11.5">表驱动：一张格式表 + 前缀比较</text>
+<text x="736" y="455.5" fill="#3ecf8e" font-size="11.5" font-weight="600" text-anchor="end">④ ⑧ ⑰</text>
+<rect x="48" y="492" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="492" width="5" height="50" rx="2.5" fill="#4a9eff"/>
+<circle cx="78" cy="517.0" r="13" fill="#0d1117" stroke="#4a9eff" stroke-width="1.4"/>
+<text x="78" y="521.5" fill="#4a9eff" font-size="12" font-weight="700" text-anchor="middle">7</text>
+<text x="102" y="513" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">命中？ 否则 → 像不像文本？ → 未知</text>
+<text x="102" y="531" fill="#8b98a9" font-size="11.5">判定分支；只有 PK 开头才再进一层</text>
+<text x="736" y="521.5" fill="#4a9eff" font-size="11.5" font-weight="600" text-anchor="end">④ ⑪</text>
+<rect x="48" y="558" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="558" width="5" height="50" rx="2.5" fill="#3ecf8e"/>
+<circle cx="78" cy="583.0" r="13" fill="#0d1117" stroke="#3ecf8e" stroke-width="1.4"/>
+<text x="78" y="587.5" fill="#3ecf8e" font-size="12" font-weight="700" text-anchor="middle">7a</text>
+<text x="102" y="579" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">new ZipFile(p) → entries → word/ xl/ ppt/</text>
+<text x="102" y="597" fill="#8b98a9" font-size="11.5">PK 开头：再进一层，判 docx/xlsx/pptx/jar</text>
+<text x="736" y="587.5" fill="#3ecf8e" font-size="11.5" font-weight="600" text-anchor="end">⑬ ⑧ ⑪</text>
+<rect x="48" y="624" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="624" width="5" height="50" rx="2.5" fill="#b48ef7"/>
+<circle cx="78" cy="649.0" r="13" fill="#0d1117" stroke="#b48ef7" stroke-width="1.4"/>
+<text x="78" y="653.5" fill="#b48ef7" font-size="12" font-weight="700" text-anchor="middle">8</text>
+<text x="102" y="645" fill="#e6edf3" font-size="11.4" font-family="Consolas, Menlo, monospace">record Ergebnis(String typ, String hinweis, …)</text>
+<text x="102" y="663" fill="#8b98a9" font-size="11.5">不可变记录承载结论</text>
+<text x="736" y="653.5" fill="#b48ef7" font-size="11.5" font-weight="600" text-anchor="end">⑥ ⑱</text>
+<rect x="48" y="690" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="690" width="5" height="50" rx="2.5" fill="#3ecf8e"/>
+<circle cx="78" cy="715.0" r="13" fill="#0d1117" stroke="#3ecf8e" stroke-width="1.4"/>
+<text x="78" y="719.5" fill="#3ecf8e" font-size="12" font-weight="700" text-anchor="middle">9</text>
+<text x="102" y="711" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">Map&lt;String,String&gt; ERWARTET;  扩展名 vs 真实类型</text>
+<text x="102" y="729" fill="#8b98a9" font-size="11.5">foto.jpg 其实是 PNG → 报警</text>
+<text x="736" y="719.5" fill="#3ecf8e" font-size="11.5" font-weight="600" text-anchor="end">⑪ ⑧ ⑨</text>
+<rect x="48" y="756" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="756" width="5" height="50" rx="2.5" fill="#4a9eff"/>
+<circle cx="78" cy="781.0" r="13" fill="#0d1117" stroke="#4a9eff" stroke-width="1.4"/>
+<text x="78" y="785.5" fill="#4a9eff" font-size="12" font-weight="700" text-anchor="middle">10</text>
+<text x="102" y="777" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">System.out.printf("%s%n", …)</text>
+<text x="102" y="795" fill="#8b98a9" font-size="11.5">人话输出：真实类型 + 怎么打开</text>
+<text x="736" y="785.5" fill="#4a9eff" font-size="11.5" font-weight="600" text-anchor="end">① ⑪</text>
+<rect x="48" y="822" width="700" height="50" rx="10" fill="#161b22" stroke="#2a3446"/>
+<rect x="48" y="822" width="5" height="50" rx="2.5" fill="#9aa4b2"/>
+<circle cx="78" cy="847.0" r="13" fill="#0d1117" stroke="#9aa4b2" stroke-width="1.4"/>
+<text x="78" y="851.5" fill="#9aa4b2" font-size="12" font-weight="700" text-anchor="middle">11</text>
+<text x="102" y="843" fill="#e6edf3" font-size="12.5" font-family="Consolas, Menlo, monospace">System.exit(0 / 1)</text>
+<text x="102" y="861" fill="#8b98a9" font-size="11.5">退出码，供 shell 脚本判断</text>
+<text x="736" y="851.5" fill="#9aa4b2" font-size="11.5" font-weight="600" text-anchor="end">⑯</text>
+<line x1="398.0" y1="146" x2="398.0" y2="162" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="212" x2="398.0" y2="228" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="278" x2="398.0" y2="294" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="344" x2="398.0" y2="360" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="410" x2="398.0" y2="426" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="476" x2="398.0" y2="492" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="138" y1="542" x2="138" y2="558" stroke="#6b7a90" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+<path d="M 748 583.0 C 792 583.0 792 649.0 752 649.0" fill="none" stroke="#6b7a90" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arr)"/>
+<line x1="398.0" y1="674" x2="398.0" y2="690" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="740" x2="398.0" y2="756" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="398.0" y1="806" x2="398.0" y2="822" stroke="#6b7a90" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="808" y="100" fill="#e6edf3" font-size="15" font-weight="700">横切 · 贯穿全流程</text>
+<rect x="808" y="118" width="396" height="66" rx="9" fill="#141b26" stroke="#2a3446"/>
+<text x="822" y="139" fill="#9cd0ff" font-size="12.5" font-weight="600">⑩ 异常</text>
+<text x="822" y="158" fill="#8b98a9" font-size="11.5">每个可能失败的 IO 动作都在 try 里；</text>
+<text x="822" y="176" fill="#8b98a9" font-size="11.5">失败给友好提示，不是抛栈</text>
+<rect x="808" y="196" width="396" height="66" rx="9" fill="#141b26" stroke="#2a3446"/>
+<text x="822" y="217" fill="#9cd0ff" font-size="12.5" font-weight="600">⑯ 工具链</text>
+<text x="822" y="236" fill="#8b98a9" font-size="11.5">javac --release 21；用 xxd 对照；</text>
+<text x="822" y="254" fill="#8b98a9" font-size="11.5">故意删 &amp; 0xFF 看它认不出</text>
+<rect x="808" y="274" width="396" height="48" rx="9" fill="#141b26" stroke="#2a3446"/>
+<text x="822" y="295" fill="#9cd0ff" font-size="12.5" font-weight="600">⑮ 性能</text>
+<text x="822" y="314" fill="#8b98a9" font-size="11.5">只读 16 字节；判 ZIP 家族才开 ZipFile</text>
+<rect x="808" y="334" width="396" height="66" rx="9" fill="#141b26" stroke="#2a3446"/>
+<text x="822" y="355" fill="#9cd0ff" font-size="12.5" font-weight="600">⑱ 设计</text>
+<text x="822" y="374" fill="#8b98a9" font-size="11.5">Format 表 / Detector / Ergebnis 三层；</text>
+<text x="822" y="392" fill="#8b98a9" font-size="11.5">表里加一行 = 支持一种新格式</text>
+<rect x="808" y="412" width="396" height="48" rx="9" fill="#141b26" stroke="#2a3446"/>
+<text x="822" y="433" fill="#9cd0ff" font-size="12.5" font-weight="600">② 类型</text>
+<text x="822" y="452" fill="#8b98a9" font-size="11.5">byte 有符号是全过程最大的坑（第 5 步）</text>
+<text x="48" y="906" fill="#e6edf3" font-size="13" font-weight="700">颜色 = 知识地图里的 6 组</text>
+<rect x="48" y="918" width="12" height="12" rx="3" fill="#4a9eff"/>
+<text x="66" y="929" fill="#8b98a9" font-size="11.5">A 地基 ①–⑤</text>
+<rect x="248" y="918" width="12" height="12" rx="3" fill="#b48ef7"/>
+<text x="266" y="929" fill="#8b98a9" font-size="11.5">B 结构 ⑥⑦⑱</text>
+<rect x="448" y="918" width="12" height="12" rx="3" fill="#3ecf8e"/>
+<text x="466" y="929" fill="#8b98a9" font-size="11.5">C 数据 ⑧⑨⑰</text>
+<rect x="648" y="918" width="12" height="12" rx="3" fill="#f0b429"/>
+<text x="666" y="929" fill="#8b98a9" font-size="11.5">D 文本与文件 ⑪⑬</text>
+<rect x="848" y="918" width="12" height="12" rx="3" fill="#9aa4b2"/>
+<text x="866" y="929" fill="#8b98a9" font-size="11.5">E 工程 ⑮⑯</text>
+<rect x="1048" y="918" width="12" height="12" rx="3" fill="#ef6b6b"/>
+<text x="1066" y="929" fill="#8b98a9" font-size="11.5">F 并发 ⑭（本项目未用）</text>
+</svg>
